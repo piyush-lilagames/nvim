@@ -6,6 +6,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end,
 })
 
+vim.api.nvim_create_augroup('AutoFormatting', {})
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = {'*.lua', '*.py', '*.js', '*.ts'},
+  group = 'AutoFormatting',
+  callback = function()
+    vim.lsp.buf.format({ async = true })
+  end,
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
     callback = function(event)
@@ -20,6 +29,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("K", vim.lsp.buf.hover, "Hover Documentation")
         map("gs", vim.lsp.buf.signature_help, "Signature Documentation")
         map("gD", vim.lsp.buf.declaration, "Goto Declaration")
+        map("gd", vim.lsp.buf.definition, "Goto Declaration")
         map("<leader>la", vim.lsp.buf.code_action, "Code Action")
         map("<leader>lr", vim.lsp.buf.rename, "Rename all references")
         map("<leader>lf", vim.lsp.buf.format, "Format")

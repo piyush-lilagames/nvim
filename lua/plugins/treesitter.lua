@@ -46,6 +46,10 @@ return {
                     node_decremental = "_",
                 },
             },
+            context = {
+                enable = true,
+                max_lines = 1,
+            },
             textobjects = {
                 select = {
                     enable = true,

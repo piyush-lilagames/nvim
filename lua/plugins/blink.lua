@@ -23,7 +23,8 @@ return {
                     },
                 },
                 keymap = {
-                    ["<C-f>"] = {},
+                    ["<CR>"] = {"select_and_accept", "fallback"},
+                    ["<S-CR>"] = {},
                 },
                 cmdline = {
                     enabled = false,
